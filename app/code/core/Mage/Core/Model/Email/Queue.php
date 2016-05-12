@@ -84,6 +84,7 @@ class Mage_Core_Model_Email_Queue extends Mage_Core_Model_Abstract
     protected function _afterSave()
     {
         $this->_getResource()->saveRecipients($this->getId(), $this->getRecipients());
+        $this->clearRecipients();
         return parent::_afterSave();
     }
 
