@@ -105,11 +105,17 @@ class Mage_Catalog_Model_Url
     protected $productUseCategories;
 
     /**
+     * @var bool
+     */
+    protected $createForDisabled;
+
+    /**
      * Neuca_Base_Model_Url constructor.
      */
     public function __construct()
     {
         $this->productUseCategories = Mage::getStoreConfigFlag('catalog/seo/product_use_categories');
+        $this->createForDisabled = Mage::getStoreConfigFlag('catalog/seo/create_url_for_disabled');
     }
 
     /**
@@ -251,7 +257,7 @@ class Mage_Catalog_Model_Url
         $this->clearStoreInvalidRewrites($storeId);
         $this->refreshCategoryRewrite($this->getStores($storeId)->getRootCategoryId(), $storeId, false);
         $this->refreshProductRewrites($storeId);
-        $this->getResource()->clearCategoryProduct($storeId);
+        $this->getResource()->clearRewrites($storeId);
 
         return $this;
     }
@@ -377,7 +383,7 @@ class Mage_Catalog_Model_Url
     }
 
     /**
-     * Refresh products for catwgory
+     * Refresh products for category
      *
      * @param Varien_Object|Mage_Catalog_Model_Category $category
      * @return $this
@@ -434,7 +440,7 @@ class Mage_Catalog_Model_Url
      */
     public function refreshCategoryRewrite($categoryId, $storeId = null, $refreshProducts = null)
     {
-        if (!$refreshProducts) {
+        if (is_null($refreshProducts)) {
             $refreshProducts = $this->productUseCategories;
         }
         if (is_null($storeId)) {
@@ -446,6 +452,11 @@ class Mage_Catalog_Model_Url
 
         $category = $this->getResource()->getCategory($categoryId, $storeId);
         if (!$category) {
+            return $this;
+        }
+
+        if (!$this->createForDisabled && !$category->getIsActive()) {
+            $this->getResource()->clearDisabledCategory($category->getId());
             return $this;
         }
 
@@ -481,7 +492,7 @@ class Mage_Catalog_Model_Url
             return $this;
         }
 
-        $product = $this->getResource()->getProduct($productId, $storeId);
+        $product = $this->getResource()->getProduct($productId, $storeId, $this->createForDisabled);
         if (!$product) {
             // Product doesn't belong to this store - clear all its url rewrites including root one
             $this->getResource()->clearProductRewrites($productId, $storeId, array());
@@ -512,6 +523,11 @@ class Mage_Catalog_Model_Url
 
         // Remove all other product rewrites created earlier for this store - they're invalid now
         $excludeCategoryIds = array_keys($categories);
+
+        // Product is disabled and in configuration set to not create for disabled - clear all its url rewrites including root one
+        if (!$this->createForDisabled && $product->getStatus() === Mage_Catalog_Model_Product_Status::STATUS_DISABLED) {
+            $excludeCategoryIds = [];
+        }
         $this->getResource()->clearProductRewrites($productId, $storeId, $excludeCategoryIds);
 
         unset($categories);
@@ -537,7 +553,8 @@ class Mage_Catalog_Model_Url
         $process = true;
 
         while ($process == true) {
-            $products = $this->getResource()->getProductsByStore($storeId, $lastEntityId);
+            $products = $this->getResource()->getProductsByStore($storeId, $lastEntityId, $this->createForDisabled);
+
             if (!$products) {
                 $process = false;
                 break;
@@ -557,7 +574,7 @@ class Mage_Catalog_Model_Url
                 }
 
                 if ($loadCategories) {
-                    $categories = $this->getResource()->getCategories($loadCategories, $storeId) ?: [];
+                    $categories = $this->getResource()->getCategories($loadCategories, $storeId, $this->createForDisabled) ?: [];
                     foreach ($categories as $category) {
                         $this->_categories[$category->getId()] = $category;
                     }
