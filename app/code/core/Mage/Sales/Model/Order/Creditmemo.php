@@ -179,17 +179,6 @@ class Mage_Sales_Model_Order_Creditmemo extends Mage_Sales_Model_Abstract
     }
 
     /**
-     * Init mapping array of short fields to its full names
-     *
-     * @return $this
-     */
-    protected function _initOldFieldsMap()
-    {
-        $this->_oldFieldsMap = Mage::helper('sales')->getOldFieldMap('order_creditmemo');
-        return $this;
-    }
-
-    /**
      * Retrieve Creditmemo configuration model
      *
      * @return Mage_Sales_Model_Order_Creditmemo_Config

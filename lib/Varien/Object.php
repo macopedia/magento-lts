@@ -97,11 +97,6 @@ class Varien_Object implements ArrayAccess
      */
     public function __construct()
     {
-        $this->_initOldFieldsMap();
-        if ($this->_oldFieldsMap) {
-            $this->_prepareSyncFieldsMap();
-        }
-
         $args = func_get_args();
         if (empty($args[0])) {
             $args[0] = array();
@@ -121,31 +116,6 @@ class Varien_Object implements ArrayAccess
                 $this->_data[$fullFieldName] = $this->_data[$key];
             }
         }
-    }
-
-    /**
-     * Inits mapping array of object's previously used fields to new fields.
-     * Must be overloaded by descendants to set concrete fields map.
-     *
-     * @return Varien_Object
-     */
-    protected function _initOldFieldsMap()
-    {
-
-    }
-
-    /**
-     * Called after old fields are inited. Forms synchronization map to sync old fields and new fields
-     * between each other.
-     *
-     * @return Varien_Object
-     */
-    protected function _prepareSyncFieldsMap()
-    {
-        $old2New = $this->_oldFieldsMap;
-        $new2Old = array_flip($this->_oldFieldsMap);
-        $this->_syncFieldsMap = array_merge($old2New, $new2Old);
-        return $this;
     }
 
     /**

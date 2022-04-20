@@ -423,23 +423,6 @@ class Mage_Sales_Model_Order extends Mage_Sales_Model_Abstract
         $this->_init('sales/order');
     }
 
-     /**
-     * Init mapping array of short fields to
-     * its full names
-     *
-     * @return Varien_Object
-     */
-    protected function _initOldFieldsMap()
-    {
-        // pre 1.6 fields names, old => new
-        $this->_oldFieldsMap = [
-            'payment_authorization_expiration' => 'payment_auth_expiration',
-            'forced_do_shipment_with_invoice' => 'forced_shipment_with_invoice',
-            'base_shipping_hidden_tax_amount' => 'base_shipping_hidden_tax_amnt',
-        ];
-        return $this;
-    }
-
     /**
      * Clear order object data
      *
