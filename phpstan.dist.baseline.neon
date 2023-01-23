@@ -131,11 +131,6 @@ parameters:
 			path: app/code/core/Mage/Adminhtml/Block/Catalog/Product/Edit.php
 
 		-
-			message: "#^Method Mage_Adminhtml_Block_Catalog_Product_Edit_Action_Attribute\\:\\:_getHelper\\(\\) should return Mage_Adminhtml_Helper_Catalog_Product_Edit_Action_Attribute but returns Mage_Core_Helper_Abstract\\.$#"
-			count: 1
-			path: app/code/core/Mage/Adminhtml/Block/Catalog/Product/Edit/Action/Attribute.php
-
-		-
 			message: "#^If condition is always true\\.$#"
 			count: 1
 			path: app/code/core/Mage/Adminhtml/Block/Catalog/Product/Edit/Js.php
@@ -1721,11 +1716,6 @@ parameters:
 			path: app/code/core/Mage/Catalog/Block/Product/View/Type/Configurable.php
 
 		-
-			message: "#^Method Mage_Catalog_Block_Product_View_Type_Configurable\\:\\:_getHelper\\(\\) should return Mage_Catalog_Helper_Product_Type_Composite but returns Mage_Core_Helper_Abstract\\.$#"
-			count: 1
-			path: app/code/core/Mage/Catalog/Block/Product/View/Type/Configurable.php
-
-		-
 			message: "#^Property Mage_Catalog_Block_Product_Widget_Html_Pager\\:\\:\\$_lastPage \\(int\\) does not accept float\\.$#"
 			count: 1
 			path: app/code/core/Mage/Catalog/Block/Product/Widget/Html/Pager.php
@@ -3257,11 +3247,6 @@ parameters:
 
 		-
 			message: "#^Method Mage_Core_Model_Cache\\:\\:getDbAdapter\\(\\) should return Zend_Db_Adapter_Abstract but returns Varien_Db_Adapter_Interface\\|false\\.$#"
-			count: 1
-			path: app/code/core/Mage/Core/Model/Cache.php
-
-		-
-			message: "#^Property Mage_Core_Model_Cache\\:\\:\\$_frontend \\(Varien_Cache_Core\\) does not accept Zend_Cache_Core\\|Zend_Cache_Frontend\\.$#"
 			count: 1
 			path: app/code/core/Mage/Core/Model/Cache.php
 
@@ -7176,11 +7161,6 @@ parameters:
 			path: app/code/core/Mage/Widget/Block/Adminhtml/Widget/Options.php
 
 		-
-			message: "#^Comparison operation \"\\>\\=\" between int\\<0, max\\>\\|false and 0 is always true\\.$#"
-			count: 1
-			path: app/code/core/Mage/Widget/Model/Widget/Instance.php
-
-		-
 			message: "#^If condition is always true\\.$#"
 			count: 1
 			path: app/code/core/Mage/Wishlist/Block/Customer/Wishlist/Item/Column.php
@@ -7264,26 +7244,6 @@ parameters:
 			message: "#^Offset 'basename' on array\\{dirname\\?\\: string, basename\\: string, extension\\?\\: string, filename\\: string\\} on left side of \\?\\? always exists and is not nullable\\.$#"
 			count: 1
 			path: lib/Mage/Archive/Helper/File.php
-
-		-
-			message: "#^Method Mage_Backup_Filesystem\\:\\:create\\(\\) should return bool but return statement is missing\\.$#"
-			count: 1
-			path: lib/Mage/Backup/Filesystem.php
-
-		-
-			message: "#^Method Mage_Backup_Filesystem\\:\\:rollback\\(\\) should return bool but return statement is missing\\.$#"
-			count: 1
-			path: lib/Mage/Backup/Filesystem.php
-
-		-
-			message: "#^Call to an undefined method Mage_Backup_Interface\\:\\:getBackupFilename\\(\\)\\.$#"
-			count: 1
-			path: lib/Mage/Backup/Media.php
-
-		-
-			message: "#^Call to an undefined method Mage_Backup_Interface\\:\\:getBackupPath\\(\\)\\.$#"
-			count: 1
-			path: lib/Mage/Backup/Snapshot.php
 
 		-
 			message: "#^Negated boolean expression is always true\\.$#"
