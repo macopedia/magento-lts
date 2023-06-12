@@ -1802,20 +1802,20 @@
         },
         {
             "name": "magento-ecg/coding-standard",
-            "version": "4.5.1",
+            "version": "4.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/magento-ecg/coding-standard.git",
-                "reference": "ab09fd7f66ac15f8cd599be5cbacabd011d42798"
+                "reference": "4269fe560c0b20b30ccfdb76b745d23f34996b0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/magento-ecg/coding-standard/zipball/ab09fd7f66ac15f8cd599be5cbacabd011d42798",
-                "reference": "ab09fd7f66ac15f8cd599be5cbacabd011d42798",
+                "url": "https://api.github.com/repos/magento-ecg/coding-standard/zipball/4269fe560c0b20b30ccfdb76b745d23f34996b0c",
+                "reference": "4269fe560c0b20b30ccfdb76b745d23f34996b0c",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1||^8.1"
+                "php": "^7.1 || ^8.0"
             },
             "type": "phpcodesniffer-standard",
             "notification-url": "https://packagist.org/downloads/",
@@ -1833,9 +1833,9 @@
             "homepage": "https://github.com/magento-ecg/coding-standard",
             "support": {
                 "issues": "https://github.com/magento-ecg/coding-standard/issues",
-                "source": "https://github.com/magento-ecg/coding-standard/tree/4.5.1"
+                "source": "https://github.com/magento-ecg/coding-standard/tree/4.5.2"
             },
-            "time": "2022-09-02T08:03:44+00:00"
+            "time": "2022-12-06T11:33:03+00:00"
         },
         {
             "name": "myclabs/deep-copy",
