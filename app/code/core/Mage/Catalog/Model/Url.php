@@ -985,7 +985,6 @@ class Mage_Catalog_Model_Url
             $rewriteData['options'] = 'RP'; // Redirect = Permanent
             $this->getResource()->saveRewriteHistory($rewriteData);
         }
-        $this->getResource()->clearProductRewrites($productId, $storeId);
 
         return $this;
     }
